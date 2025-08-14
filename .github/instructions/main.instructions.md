@@ -12,3 +12,5 @@ Coding Guidelines:
 4. Write clean, maintainable code with proper indentation and formatting.
 5. Include comments and documentation where necessary to explain complex logic or components.
 6. Always explain the reasoning behind code changes or implementations.
+7. When asked to implement something, don't put any logic into it unless I clarify that I want something with functionality. Start always with the UI.
+8. Use Tailwind for styling.
