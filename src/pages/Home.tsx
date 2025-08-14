@@ -1,21 +1,27 @@
-import { Link } from "react-router";
-import { randomTeamId } from "../utils/randomizeTeam";
+import { Link, useNavigate } from "react-router";
+import { randomizeTeam } from "../utils/randomizeTeam";
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleRandomTeam = () => {
+    const randomIndex = randomizeTeam();
+    navigate(`/teams/${randomIndex}`);
+  };
+
   return (
-    <section className="home">
-      <h1 className="home-title">Welcome to RecoFM Lite</h1>
-      <p className="home-description">
-        A lightweight recommendation system built with React and Vite.
-      </p>
+    <section>
+      <h1>Welcome to ParriFM</h1>
+      <p>A lightweight recommendation system built for Football Manager.</p>
 
       <div className="flex flex-col md:flex-row gap-4 items-center justify-center mt-4">
+        <Link to="/selector">
+          <button>Selector</button>
+        </Link>
         <Link to="/teams">
           <button>All Teams</button>
         </Link>
-        <Link to={`/teams/${randomTeamId}`}>
-          <button>Random Team</button>
-        </Link>
+        <button onClick={handleRandomTeam}>Random Team</button>
       </div>
     </section>
   );
