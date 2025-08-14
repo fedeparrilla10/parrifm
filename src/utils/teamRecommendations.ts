@@ -1,3 +1,5 @@
+import { type SaveType } from "./types";
+
 interface TeamRecommendation {
   id: number;
   name: string;
@@ -7,6 +9,7 @@ interface TeamRecommendation {
   reason: string;
   difficulty: number;
   stadium: Stadium;
+  save_type: SaveType[];
 }
 
 type Stadium = {
@@ -30,6 +33,7 @@ export const teamRecommendations: TeamRecommendation[] = [
       image: "/teams/stadiums/st_wimbledon.jpg",
       city: "London",
     },
+    save_type: ["long_term"],
   },
   {
     id: 2,
@@ -45,6 +49,7 @@ export const teamRecommendations: TeamRecommendation[] = [
       image: "/teams/stadiums/st_union_berlin.jpg",
       city: "Berlin",
     },
+    save_type: ["long_term", "special"],
   },
   {
     id: 3,
@@ -60,6 +65,7 @@ export const teamRecommendations: TeamRecommendation[] = [
       image: "/teams/stadiums/st_rso.jpg",
       city: "San Sebastián",
     },
+    save_type: ["long_term"],
   },
   {
     id: 4,
@@ -75,6 +81,7 @@ export const teamRecommendations: TeamRecommendation[] = [
       image: "/teams/stadiums/st_atalanta.webp",
       city: "Bergamo",
     },
+    save_type: ["long_term"],
   },
   {
     id: 5,
@@ -90,5 +97,6 @@ export const teamRecommendations: TeamRecommendation[] = [
       image: "/teams/stadiums/st_nordsjælland.jpg",
       city: "Farum",
     },
+    save_type: ["long_term"],
   },
 ];
