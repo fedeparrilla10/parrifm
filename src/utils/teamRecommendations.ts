@@ -49,7 +49,7 @@ export const teamRecommendations: TeamRecommendation[] = [
       image: "/teams/stadiums/st_union_berlin.jpg",
       city: "Berlin",
     },
-    save_type: ["long_term", "special"],
+    save_type: ["special"],
   },
   {
     id: 3,
