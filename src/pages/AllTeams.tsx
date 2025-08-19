@@ -1,5 +1,6 @@
 import { teamRecommendations } from "../utils/teamRecommendations";
 import { Link } from "react-router";
+import { Button } from "@/components/ui/button";
 
 const AllTeams: React.FC = () => {
   return (
@@ -20,9 +21,7 @@ const AllTeams: React.FC = () => {
               </span> */}
             </div>
             <Link to={`/teams/${team.id}`}>
-              <button className="text-xs px-2 py-1 bg-blue-500 text-white rounded">
-                View
-              </button>
+              <Button size="sm">View</Button>
             </Link>
           </li>
         ))}

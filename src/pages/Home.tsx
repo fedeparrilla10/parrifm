@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router";
 import { randomizeTeam } from "../utils/randomizeTeam";
+import { Button } from "@/components/ui/button";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -16,12 +17,12 @@ const Home: React.FC = () => {
 
       <div className="flex flex-col md:flex-row gap-4 items-center justify-center mt-4">
         <Link to="/selector">
-          <button>Selector</button>
+          <Button>Selector</Button>
         </Link>
         <Link to="/teams">
-          <button>All Teams</button>
+          <Button>All Teams</Button>
         </Link>
-        <button onClick={handleRandomTeam}>Random Team</button>
+        <Button onClick={handleRandomTeam}>Random Team</Button>
       </div>
     </section>
   );

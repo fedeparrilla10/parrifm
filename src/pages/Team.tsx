@@ -1,13 +1,21 @@
-import { useParams, useNavigate, Link } from "react-router";
+import { useParams, useNavigate } from "react-router";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 import { teamRecommendations } from "../utils/teamRecommendations";
-import { randomizeTeam } from "../utils/randomizeTeam";
+import { randomizeTeam, randomizeTeamBySaveType } from "../utils/randomizeTeam";
+import { type SaveType } from "../utils/types";
 
 const Team: React.FC = () => {
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
+  const { id, saveType } = useParams<{ id: string; saveType?: string }>();
   const team = teamRecommendations.find((team) => team.id === Number(id));
 
-  const handleRandomize = () => {
+  const randomizeTeamsBySaveType = (saveType: SaveType) => {
+    const randomIndex = randomizeTeamBySaveType(saveType);
+    navigate(`/teams/${saveType}/${randomIndex}`);
+  };
+
+  const randomizeAllTeams = (): void => {
     const randomIndex = randomizeTeam();
     navigate(`/teams/${randomIndex}`);
   };
@@ -16,11 +24,6 @@ const Team: React.FC = () => {
     <section className="flex flex-col items-center justify-center gap-1">
       <div className="flex items-center justify-center">
         <img src={team?.logo} alt={`${team?.name} logo`} className="w-1/2" />
-        {/* <img
-          src={team?.stadium.image}
-          alt={`${team?.stadium.name} stadium`}
-          className="team-stadium w-1/2"
-        /> */}
       </div>
 
       <div className="flex flex-col items-center justify-center">
@@ -33,10 +36,25 @@ const Team: React.FC = () => {
       <p>{team?.difficulty}</p>
 
       <div className="flex gap-4 mt-8">
-        <Link to="/">
-          <button>Back</button>
-        </Link>
-        <button onClick={handleRandomize}>Random Team</button>
+        {saveType && (
+          <>
+            <Button onClick={() => navigate("/selector")}>Back</Button>
+            <Button
+              onClick={() => randomizeTeamsBySaveType(saveType as SaveType)}
+            >
+              Show me another team
+            </Button>
+          </>
+        )}
+        {!saveType && (
+          <>
+            <Button variant="outline" onClick={() => navigate("/")}>
+              <ArrowLeft className="mr-0.5 mt-0.5" />
+              Back
+            </Button>
+            <Button onClick={randomizeAllTeams}>Randomize another team</Button>
+          </>
+        )}
       </div>
     </section>
   );
