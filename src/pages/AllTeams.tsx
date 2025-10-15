@@ -1,31 +1,21 @@
-import { teamRecommendations } from "../utils/teamRecommendations";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import TeamsTable from "@/components/TeamsTable";
 
 const AllTeams: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
-    <section className="max-w-2xl mx-auto py-8">
-      <h2 className="text-xl font-bold mb-6 text-center">All Teams</h2>
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {teamRecommendations.map((team) => (
-          <li key={team.id} className="flex items-center gap-4 rounded p-3">
-            <img
-              src={team.logo}
-              alt={`${team.name} logo`}
-              className="w-12 h-12 object-contain rounded"
-            />
-            <div className="flex flex-col flex-1">
-              <span className="font-semibold text-lg">{team.name}</span>
-              {/* <span className="text-sm text-gray-500">
-                Difficulty: {team.difficulty}
-              </span> */}
-            </div>
-            <Link to={`/teams/${team.id}`}>
-              <Button size="sm">View</Button>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <section className="max-w-6xl mx-auto py-8">
+      <TeamsTable />
+
+      <div className="mt-4 flex justify-center">
+        <Button variant="outline" size="sm" onClick={() => navigate("/")}>
+          <ArrowLeft className="mr-0.5 mt-0.5" />
+          Back
+        </Button>
+      </div>
     </section>
   );
 };
